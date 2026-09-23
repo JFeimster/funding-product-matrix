@@ -160,7 +160,7 @@ The same static site is also available through GitHub Pages:
 
 https://jfeimster.github.io/funding-product-matrix/
 
-## DistilledFunding Redirect Targets
+## Lead Capture\n\nThe landing page posts email access requests to `/api/resource-lead`, which can upsert HubSpot contacts using the server-only `HUBSPOT_PRIVATE_APP_TOKEN` environment variable. Resource links unlock only after a successful API response.\n\nSetup details: [docs/lead-capture-setup.md](docs/lead-capture-setup.md)\n\nThe YouTube and article cards use their direct published URLs:\n\n- YouTube: https://youtu.be/d3llRn13oQ4\n- Article: https://www.distilledfunding.com/post/funding-product-matrix\n\n## DistilledFunding Redirect Targets
 
 The static page is designed to work with branded DistilledFunding redirect URLs such as:
 
