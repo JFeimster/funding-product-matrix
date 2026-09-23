@@ -1,3 +1,5 @@
+<img width="1200" height="798" alt="Image" src="https://github.com/user-attachments/assets/ad126fd5-9b80-413d-b8b7-92d91809fe96" />
+
 # Funding Product Matrix for Brokers
 
 A practical broker-routing resource from **Moonshine Capital / DistilledFunding** for comparing common business funding product categories by borrower fit, use of funds, readiness, red flags, documents, repayment structure, urgency, and next-best action.
