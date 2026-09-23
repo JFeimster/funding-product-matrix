@@ -25,6 +25,7 @@ html {
 body {
   min-height: 100vh;
   overflow-x: hidden;
+  padding-bottom: 0;
   background:
     linear-gradient(rgba(255,255,255,.018) 1px, transparent 1px),
     linear-gradient(90deg, rgba(255,255,255,.018) 1px, transparent 1px),
@@ -36,7 +37,15 @@ body {
   -webkit-font-smoothing: antialiased;
 }
 
+body.has-sticky-cta {
+  padding-bottom: 92px;
+}
+
 a { color: inherit; }
+
+button {
+  font: inherit;
+}
 
 .skip-link {
   position: fixed;
@@ -50,6 +59,7 @@ a { color: inherit; }
   font-weight: 900;
   text-decoration: none;
 }
+
 .skip-link:focus { transform: translateY(0); }
 
 .topbar {
@@ -88,7 +98,8 @@ main {
   padding: 80px 0 64px;
 }
 
-.eyebrow, .card-kicker {
+.eyebrow,
+.card-kicker {
   margin-bottom: 12px;
   color: var(--primary);
   font-size: .78rem;
@@ -213,7 +224,8 @@ main {
 
 .btn:focus-visible,
 .link-card:focus-visible,
-.brand:focus-visible {
+.brand:focus-visible,
+.faq-question:focus-visible {
   outline: 3px solid var(--primary);
   outline-offset: 3px;
 }
@@ -253,7 +265,8 @@ main {
 }
 
 .section-heading h2,
-.routing-panel h2 {
+.routing-panel h2,
+.faq-section h2 {
   font-size: clamp(2rem, 4vw, 3.2rem);
   line-height: .98;
   letter-spacing: -.05em;
@@ -278,7 +291,9 @@ main {
   transition: var(--transition);
 }
 
-.link-card.high-intent { border-left: 4px solid var(--primary); }
+.link-card.high-intent {
+  border-left: 4px solid var(--primary);
+}
 
 .link-icon {
   display: grid;
@@ -351,6 +366,69 @@ main {
   font-weight: 900;
 }
 
+.faq-section {
+  padding: 92px 0 16px;
+}
+
+.faq-heading {
+  margin-bottom: 24px;
+}
+
+.faq-list {
+  border-top: 1px solid var(--border);
+}
+
+.faq-item {
+  border-bottom: 1px solid var(--border);
+}
+
+.faq-item h3 {
+  font-size: inherit;
+}
+
+.faq-question {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  width: 100%;
+  padding: 24px 0;
+  border: 0;
+  background: transparent;
+  color: var(--text-main);
+  text-align: left;
+  cursor: pointer;
+  font-size: clamp(1rem, 2vw, 1.18rem);
+  font-weight: 850;
+}
+
+.faq-plus {
+  display: grid;
+  width: 30px;
+  height: 30px;
+  flex: 0 0 auto;
+  place-items: center;
+  border: 1px solid var(--border);
+  color: var(--primary);
+  font-size: 1.3rem;
+  line-height: 1;
+  transition: transform .2s ease, border-color .2s ease;
+}
+
+.faq-question[aria-expanded="true"] .faq-plus {
+  transform: rotate(45deg);
+  border-color: var(--primary);
+}
+
+.faq-answer {
+  padding: 0 52px 24px 0;
+}
+
+.faq-answer p {
+  max-width: 850px;
+  color: var(--text-dim);
+}
+
 .site-footer {
   width: min(100% - 32px, var(--max));
   margin: 72px auto 0;
@@ -375,6 +453,52 @@ main {
 
 .footer-brand strong { color: var(--text-main); }
 
+.sticky-cta {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  min-height: 76px;
+  padding: 12px 5%;
+  border-top: 2px solid var(--primary);
+  background: rgba(17,17,17,.97);
+  box-shadow: 0 -16px 40px rgba(0,0,0,.3);
+  transform: translateY(110%);
+  visibility: hidden;
+  transition: transform .35s cubic-bezier(.16,1,.3,1), visibility .35s;
+}
+
+.sticky-cta.visible {
+  transform: translateY(0);
+  visibility: visible;
+}
+
+.sticky-copy {
+  display: flex;
+  flex-direction: column;
+}
+
+.sticky-copy strong {
+  color: var(--text-main);
+}
+
+.sticky-copy span {
+  color: var(--text-dim);
+  font-size: .84rem;
+}
+
+.sticky-button {
+  width: auto;
+  min-width: 190px;
+  margin: 0;
+  justify-content: center;
+}
+
 @media (max-width: 768px) {
   .topbar {
     padding: 18px 16px;
@@ -388,7 +512,7 @@ main {
   .hero {
     grid-template-columns: 1fr;
     gap: 34px;
-    padding: 44px 0 44px;
+    padding: 44px 0;
   }
 
   .hero h1 {
@@ -435,8 +559,44 @@ main {
     padding: 24px;
   }
 
+  .faq-section {
+    padding-top: 64px;
+  }
+
+  .faq-answer {
+    padding-right: 0;
+  }
+
   .footer-brand {
     flex-direction: column;
+  }
+
+  .sticky-cta {
+    align-items: stretch;
+    gap: 10px;
+    padding: 12px 16px;
+  }
+
+  .sticky-button {
+    min-width: 160px;
+  }
+}
+
+@media (max-width: 560px) {
+  body.has-sticky-cta {
+    padding-bottom: 128px;
+  }
+
+  .sticky-cta {
+    flex-direction: column;
+  }
+
+  .sticky-copy {
+    text-align: center;
+  }
+
+  .sticky-button {
+    width: 100%;
   }
 }
 
@@ -482,5 +642,9 @@ main {
   .btn:hover,
   .link-card:hover {
     transform: none;
+  }
+
+  .sticky-cta {
+    transition: none;
   }
 }
