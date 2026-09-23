@@ -7,6 +7,6 @@ module.exports = async function health(req, res) {
   return res.end(JSON.stringify({
     ok: true,
     service: "funding-product-matrix",
-    lead_capture_configured: Boolean(process.env.HUBSPOT_PRIVATE_APP_TOKEN)
+    lead_capture: "vercel-log-to-google-sheet"
   }));
 };
