@@ -87,6 +87,7 @@ funding-product-matrix/
 ├── index.html
 ├── styles.css
 ├── script.js
+├── vercel.json
 ├── README.md
 └── docs/
     ├── funding-product-matrix-for-brokers.md
@@ -118,6 +119,40 @@ The repository can deploy as a static Vercel project with no build step.
 Production URL:
 
 https://funding-product-matrix.vercel.app/
+
+#### Deployment Control
+
+Automatic Git deployments are **locked off by default** in `vercel.json`:
+
+```json
+{
+  "$schema": "https://openapi.vercel.sh/vercel.json",
+  "framework": null,
+  "installCommand": "",
+  "git": {
+    "deploymentEnabled": {
+      "*": false,
+      "main": false
+    }
+  }
+}
+```
+
+This prevents automatic Preview deployments and also prevents automatic Production deployment from `main`.
+
+When you intentionally want the next push to `main` to deploy to Production, temporarily change:
+
+```json
+"main": false
+```
+
+to:
+
+```json
+"main": true
+```
+
+Keep `"*": false` unchanged so non-production branches remain blocked from automatic Preview deployments. After the intended Production deployment, switch `main` back to `false`.
 
 ### GitHub Pages
 
