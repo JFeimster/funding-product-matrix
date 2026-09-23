@@ -4,7 +4,7 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Funding Product Matrix Hub | Moonshine Capital</title>
-  <meta name="description" content="Download the Funding Product Matrix for Brokers and access the PDF, CSV, Notion version, video, article, and broker resources." />
+  <meta name="description" content="Get the Funding Product Matrix for Brokers: one-page PDF, spreadsheet, full broker routing playbook, CSV, Notion workspace, and interactive matrix." />
   <meta name="robots" content="index, follow" />
   <meta name="theme-color" content="#050505" />
   <meta property="og:title" content="Funding Product Matrix Hub" />
@@ -46,19 +46,52 @@
       <aside class="resource-card" aria-labelledby="resource-card-title">
         <p class="card-kicker">GET THE MATRIX</p>
         <h2 id="resource-card-title">Choose Your Format</h2>
-        <p>Start with the one-page PDF, then grab the spreadsheet or interactive workspace version.</p>
+        <p class="resource-intro">Enter your email once, then choose the version that fits your workflow.</p>
 
-        <a class="btn btn-primary" href="https://www.distilledfunding.com/go/funding-matrix-pdf" aria-label="Download the Funding Product Matrix PDF">
-          <span>📥 Download the PDF</span><span aria-hidden="true">↗</span>
-        </a>
-        <a class="btn btn-secondary" href="https://www.distilledfunding.com/go/funding-matrix-csv" aria-label="Download the Funding Product Matrix spreadsheet">
-          <span>📊 Download the Spreadsheet</span><span aria-hidden="true">→</span>
-        </a>
-        <a class="btn btn-secondary" href="https://www.distilledfunding.com/go/funding-matrix-notion" aria-label="Open the interactive Notion Funding Product Matrix">
-          <span>🌐 Open Notion Version</span><span aria-hidden="true">→</span>
-        </a>
+        <form class="resource-form" id="resource-form" action="#" method="post" novalidate>
+          <label for="resource-email">Email address</label>
+          <div class="email-row">
+            <input id="resource-email" name="email" type="email" autocomplete="email" inputmode="email" placeholder="you@company.com" required aria-describedby="email-help form-status" />
+            <button class="unlock-button" type="submit">Unlock Resources <span aria-hidden="true">→</span></button>
+          </div>
+          <p class="form-help" id="email-help">Free broker resource. Practical updates only. Unsubscribe anytime.</p>
+          <p class="form-status" id="form-status" role="status" aria-live="polite"></p>
+        </form>
 
-        <p class="resource-note">PDF for fast review. Spreadsheet for your ops stack. Notion for an editable workspace.</p>
+        <div class="resource-options" id="resource-options" aria-label="Funding Product Matrix formats">
+          <a class="resource-option featured locked" data-resource="one-page-pdf" href="https://drive.google.com/file/d/10ngkqVXa3RrTEtHEPEZoxmt1k7bOvFsu/view?usp=drivesdk" aria-disabled="true">
+            <span class="resource-icon" aria-hidden="true">📥</span>
+            <span class="resource-option-copy"><strong>One-Page PDF</strong><small>Fastest reference for product routing.</small></span>
+            <span class="resource-arrow" aria-hidden="true">↗</span>
+          </a>
+          <a class="resource-option locked" data-resource="google-spreadsheet" href="https://docs.google.com/spreadsheets/d/1tNYQ0j0FdNJxvXTF5xBl2u7dWW_BqTNXffWtvJ84DfA/edit?usp=drivesdk" aria-disabled="true">
+            <span class="resource-icon" aria-hidden="true">📊</span>
+            <span class="resource-option-copy"><strong>Google Spreadsheet</strong><small>Editable working matrix with fit scoring.</small></span>
+            <span class="resource-arrow" aria-hidden="true">→</span>
+          </a>
+          <a class="resource-option locked" data-resource="broker-routing-playbook" href="https://docs.google.com/document/d/1bBvlhatB9RevTQ5OSc5iqoBUldJhl8ZBgYAkPntXCfg/edit?usp=drivesdk" aria-disabled="true">
+            <span class="resource-icon" aria-hidden="true">📘</span>
+            <span class="resource-option-copy"><strong>Full Broker Routing Playbook</strong><small>The expanded operating guide, scripts, red flags, and routing logic.</small></span>
+            <span class="resource-arrow" aria-hidden="true">→</span>
+          </a>
+          <a class="resource-option locked" data-resource="csv" href="./docs/funding-product-matrix-for-brokers.csv" aria-disabled="true" download>
+            <span class="resource-icon" aria-hidden="true">🧮</span>
+            <span class="resource-option-copy"><strong>CSV Version</strong><small>Portable data for CRM, Airtable, Sheets, or Notion.</small></span>
+            <span class="resource-arrow" aria-hidden="true">↓</span>
+          </a>
+          <a class="resource-option locked" data-resource="notion" href="https://feimster.notion.site/funding-product-matrix" aria-disabled="true">
+            <span class="resource-icon" aria-hidden="true">🗂️</span>
+            <span class="resource-option-copy"><strong>Notion Version</strong><small>Editable workspace for your broker operation.</small></span>
+            <span class="resource-arrow" aria-hidden="true">→</span>
+          </a>
+          <a class="resource-option locked" data-resource="interactive-matrix" href="https://funding-product-matrix.vercel.app/" aria-disabled="true">
+            <span class="resource-icon" aria-hidden="true">🌐</span>
+            <span class="resource-option-copy"><strong>Interactive Matrix</strong><small>Keep the routing resource open in your browser.</small></span>
+            <span class="resource-arrow" aria-hidden="true">→</span>
+          </a>
+        </div>
+
+        <p class="resource-note" id="resource-note">Enter your email to unlock every format. No account or password required.</p>
       </aside>
     </section>
 
@@ -121,7 +154,6 @@
       <p class="eyebrow attention">QUICK ROUTING REMINDER</p>
       <h2 id="routing-title">Do Not Route by Panic.</h2>
       <p>Before you pitch a funding product, check the borrower’s use of funds, repayment source, urgency, documents, existing debt, and cash-flow pressure.</p>
-
       <ul class="routing-list">
         <li>What is the money actually for?</li>
         <li>How will repayment fit the business cash flow?</li>
@@ -129,7 +161,6 @@
         <li>Are the documents ready?</li>
         <li>Does the borrower need funding now, or cleanup first?</li>
       </ul>
-
       <p class="routing-close">Fast is useful. Wrong is expensive.</p>
     </section>
 
@@ -138,97 +169,25 @@
         <p class="eyebrow">COMMON QUESTIONS</p>
         <h2 id="faq-title">Use the matrix as a routing tool — not a crystal ball.</h2>
       </div>
-
       <div class="faq-list">
-        <article class="faq-item">
-          <h3>
-            <button class="faq-question" type="button" aria-expanded="false" aria-controls="faq-answer-1" id="faq-question-1">
-              <span>What is the Funding Product Matrix?</span>
-              <span class="faq-plus" aria-hidden="true">+</span>
-            </button>
-          </h3>
-          <div class="faq-answer" id="faq-answer-1" role="region" aria-labelledby="faq-question-1" hidden>
-            <p>It is a first-pass broker routing framework for comparing common business funding product categories against the borrower’s use of funds, urgency, repayment fit, documents, readiness signals, and red flags.</p>
-          </div>
-        </article>
-
-        <article class="faq-item">
-          <h3>
-            <button class="faq-question" type="button" aria-expanded="false" aria-controls="faq-answer-2" id="faq-question-2">
-              <span>Is this an approval tool?</span>
-              <span class="faq-plus" aria-hidden="true">+</span>
-            </button>
-          </h3>
-          <div class="faq-answer" id="faq-answer-2" role="region" aria-labelledby="faq-question-2" hidden>
-            <p>No. The matrix can support intake and product routing, but it does not determine approval, eligibility, pricing, repayment terms, or lender decisions. Human and provider review still matter.</p>
-          </div>
-        </article>
-
-        <article class="faq-item">
-          <h3>
-            <button class="faq-question" type="button" aria-expanded="false" aria-controls="faq-answer-3" id="faq-question-3">
-              <span>Which funding products are included?</span>
-              <span class="faq-plus" aria-hidden="true">+</span>
-            </button>
-          </h3>
-          <div class="faq-answer" id="faq-answer-3" role="region" aria-labelledby="faq-question-3" hidden>
-            <p>The matrix covers MCA, business line of credit, equipment financing, AR or invoice financing, credit builder offers, term loans, SBA-style or longer-term financing, inventory financing, and revenue-based financing.</p>
-          </div>
-        </article>
-
-        <article class="faq-item">
-          <h3>
-            <button class="faq-question" type="button" aria-expanded="false" aria-controls="faq-answer-4" id="faq-question-4">
-              <span>Should brokers always choose the fastest funding option?</span>
-              <span class="faq-plus" aria-hidden="true">+</span>
-            </button>
-          </h3>
-          <div class="faq-answer" id="faq-answer-4" role="region" aria-labelledby="faq-question-4" hidden>
-            <p>No. Speed is one factor. A faster product may create more repayment pressure or fit the borrower’s actual use of funds poorly. Compare urgency against cash flow, repayment structure, documentation, and alternatives.</p>
-          </div>
-        </article>
-
-        <article class="faq-item">
-          <h3>
-            <button class="faq-question" type="button" aria-expanded="false" aria-controls="faq-answer-5" id="faq-question-5">
-              <span>Can I import the spreadsheet into Google Sheets or Notion?</span>
-              <span class="faq-plus" aria-hidden="true">+</span>
-            </button>
-          </h3>
-          <div class="faq-answer" id="faq-answer-5" role="region" aria-labelledby="faq-question-5" hidden>
-            <p>Yes. The spreadsheet version is designed to be portable into tools such as Google Sheets, Notion, Airtable, or a broker CRM so you can adapt it to your workflow.</p>
-          </div>
-        </article>
-
-        <article class="faq-item">
-          <h3>
-            <button class="faq-question" type="button" aria-expanded="false" aria-controls="faq-answer-6" id="faq-question-6">
-              <span>Does the matrix replace lender or underwriting review?</span>
-              <span class="faq-plus" aria-hidden="true">+</span>
-            </button>
-          </h3>
-          <div class="faq-answer" id="faq-answer-6" role="region" aria-labelledby="faq-question-6" hidden>
-            <p>No. It is an educational and workflow-support resource. Lending, underwriting, tax, legal, accounting, and compliance judgments should remain with qualified professionals and the appropriate providers.</p>
-          </div>
-        </article>
+        <article class="faq-item"><h3><button class="faq-question" type="button" aria-expanded="false" aria-controls="faq-answer-1" id="faq-question-1"><span>What is the Funding Product Matrix?</span><span class="faq-plus" aria-hidden="true">+</span></button></h3><div class="faq-answer" id="faq-answer-1" role="region" aria-labelledby="faq-question-1" hidden><p>It is a first-pass broker routing framework for comparing common business funding product categories against the borrower’s use of funds, urgency, repayment fit, documents, readiness signals, and red flags.</p></div></article>
+        <article class="faq-item"><h3><button class="faq-question" type="button" aria-expanded="false" aria-controls="faq-answer-2" id="faq-question-2"><span>Is this an approval tool?</span><span class="faq-plus" aria-hidden="true">+</span></button></h3><div class="faq-answer" id="faq-answer-2" role="region" aria-labelledby="faq-question-2" hidden><p>No. The matrix can support intake and product routing, but it does not determine approval, eligibility, pricing, repayment terms, or lender decisions. Human and provider review still matter.</p></div></article>
+        <article class="faq-item"><h3><button class="faq-question" type="button" aria-expanded="false" aria-controls="faq-answer-3" id="faq-question-3"><span>Which funding products are included?</span><span class="faq-plus" aria-hidden="true">+</span></button></h3><div class="faq-answer" id="faq-answer-3" role="region" aria-labelledby="faq-question-3" hidden><p>The matrix covers MCA, business line of credit, equipment financing, AR or invoice financing, credit builder offers, term loans, SBA-style or longer-term financing, inventory financing, and revenue-based financing.</p></div></article>
+        <article class="faq-item"><h3><button class="faq-question" type="button" aria-expanded="false" aria-controls="faq-answer-4" id="faq-question-4"><span>Should brokers always choose the fastest funding option?</span><span class="faq-plus" aria-hidden="true">+</span></button></h3><div class="faq-answer" id="faq-answer-4" role="region" aria-labelledby="faq-question-4" hidden><p>No. Speed is one factor. A faster product may create more repayment pressure or fit the borrower’s actual use of funds poorly. Compare urgency against cash flow, repayment structure, documentation, and alternatives.</p></div></article>
+        <article class="faq-item"><h3><button class="faq-question" type="button" aria-expanded="false" aria-controls="faq-answer-5" id="faq-question-5"><span>Can I import the spreadsheet into Google Sheets or Notion?</span><span class="faq-plus" aria-hidden="true">+</span></button></h3><div class="faq-answer" id="faq-answer-5" role="region" aria-labelledby="faq-question-5" hidden><p>Yes. The spreadsheet version is designed to be portable into tools such as Google Sheets, Notion, Airtable, or a broker CRM so you can adapt it to your workflow.</p></div></article>
+        <article class="faq-item"><h3><button class="faq-question" type="button" aria-expanded="false" aria-controls="faq-answer-6" id="faq-question-6"><span>Does the matrix replace lender or underwriting review?</span><span class="faq-plus" aria-hidden="true">+</span></button></h3><div class="faq-answer" id="faq-answer-6" role="region" aria-labelledby="faq-question-6" hidden><p>No. It is an educational and workflow-support resource. Lending, underwriting, tax, legal, accounting, and compliance judgments should remain with qualified professionals and the appropriate providers.</p></div></article>
       </div>
     </section>
   </main>
 
   <footer class="site-footer">
     <p>This resource is for educational and broker workflow support only. It does not guarantee funding approval, pricing, repayment terms, lender eligibility, credit outcomes, or funding timelines. Eligibility and terms vary by provider and borrower profile.</p>
-    <div class="footer-brand">
-      <strong>MOONSHINE CAPITAL / DISTILLEDFUNDING</strong>
-      <span>Route better deals. Stop funding by vibes.</span>
-    </div>
+    <div class="footer-brand"><strong>MOONSHINE CAPITAL / DISTILLEDFUNDING</strong><span>Route better deals. Stop funding by vibes.</span></div>
   </footer>
 
-  <aside class="sticky-cta" id="sticky-cta" aria-label="Download Funding Product Matrix">
-    <div class="sticky-copy">
-      <strong>Route better deals.</strong>
-      <span>Stop funding by vibes.</span>
-    </div>
-    <a class="btn btn-primary sticky-button" href="https://www.distilledfunding.com/go/funding-matrix-pdf" aria-label="Get the Funding Product Matrix PDF">Get the Matrix</a>
+  <aside class="sticky-cta" id="sticky-cta" aria-label="Get Funding Product Matrix resources">
+    <div class="sticky-copy"><strong>Route better deals.</strong><span>Get the complete Funding Product Matrix resource pack.</span></div>
+    <a class="btn btn-primary sticky-button" href="#resource-card-title">Get the Matrix</a>
   </aside>
 
   <script src="./script.js" defer></script>
