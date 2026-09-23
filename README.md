@@ -1,49 +1,131 @@
-# Funding Product Matrix Hub
+# Funding Product Matrix for Brokers
 
-A static, mobile-first link-in-bio style resource page for Moonshine Capital / DistilledFunding.
+A practical broker-routing resource from **Moonshine Capital / DistilledFunding** for comparing common business funding product categories by borrower fit, use of funds, readiness, red flags, documents, repayment structure, urgency, and next-best action.
 
-## Purpose
+> **Route better deals. Stop funding by vibes.**
 
-This page helps brokers, referral partners, consultants, ISOs, broker VAs, and funding agency operators quickly access the Funding Product Matrix resources:
+## Live Sites
 
-- PDF download
-- CSV download
-- Interactive Notion version
-- YouTube breakdown
-- Full article
-- Funding agency CTA
-- Funding options
-- Broker automation resources
+- **Vercel:** https://funding-product-matrix.vercel.app/
+- **GitHub Pages:** https://jfeimster.github.io/funding-product-matrix/
+- **Repository:** https://github.com/JFeimster/funding-product-matrix
 
-## File Structure
+## Published Content
 
-```txt
-site/
+- **Full article:** https://www.distilledfunding.com/post/funding-product-matrix
+- **YouTube walkthrough:** https://youtu.be/d3llRn13oQ4
+- **Interactive Notion version:** https://feimster.notion.site/funding-product-matrix
+- **Google Docs lead magnet:** https://docs.google.com/document/d/12IrowK1pe0yTv827rfu8pOAWywyHs768aPeky-olY54/edit
+
+## Downloadable Assets
+
+| Asset | Format | Repository file |
+| --- | --- | --- |
+| Full broker lead magnet | Markdown | [docs/funding-product-matrix-for-brokers.md](docs/funding-product-matrix-for-brokers.md) |
+| Funding product matrix data | CSV | [docs/funding-product-matrix-for-brokers.csv](docs/funding-product-matrix-for-brokers.csv) |
+| Formatted spreadsheet | XLSX | [docs/funding-product-matrix-for-brokers.xlsx](docs/funding-product-matrix-for-brokers.xlsx) |
+| One-page lead magnet | PDF | [docs/funding-product-matrix-for-brokers-one-page.pdf](docs/funding-product-matrix-for-brokers-one-page.pdf) |
+
+The CSV is the simplest option for importing the matrix into **Google Sheets, Notion, Airtable, or a CRM**. The XLSX version is formatted for spreadsheet use. The Markdown version is optimized for GitHub, Notion, and documentation workflows.
+
+## What the Matrix Covers
+
+The matrix helps brokers compare:
+
+- Merchant Cash Advance / MCA
+- Business Line of Credit / LOC
+- Equipment Financing
+- Accounts Receivable / Invoice Financing
+- Credit Builder Offers
+- Term Loans
+- SBA-style / Longer-Term Financing
+- Inventory Financing
+- Revenue-Based Financing
+
+The full lead magnet also includes:
+
+- Product fit scoring
+- Human-review triggers
+- Borrower intake questions
+- Product-specific red flags
+- Product routing cheat sheet
+- CRM / Notion / Airtable field structure
+- Broker conversation scripts
+- Compliance-safe language
+- Next-best-action guidance
+
+## Who It Is For
+
+Designed for:
+
+- Funding brokers
+- Referral partners
+- ISOs
+- Funding agency operators
+- Consultants
+- Broker VAs
+- Business funding teams
+
+## Suggested Workflow
+
+1. Identify the borrower’s actual use of funds.
+2. Review revenue, cash-flow pressure, urgency, and existing obligations.
+3. Check document readiness.
+4. Compare at least two plausible product categories.
+5. Assign a **1–5 product-fit score**.
+6. Escalate ambiguous or higher-risk files for human review.
+7. Route the borrower toward the best initial product category rather than defaulting to the fastest or most familiar offer.
+
+The scoring model is a **routing aid, not an approval score**.
+
+## Repository Structure
+
+```text
+funding-product-matrix/
 ├── index.html
 ├── styles.css
 ├── script.js
-└── README.md
+├── README.md
+└── docs/
+    ├── funding-product-matrix-for-brokers.md
+    ├── funding-product-matrix-for-brokers.csv
+    ├── funding-product-matrix-for-brokers.xlsx
+    └── funding-product-matrix-for-brokers-one-page.pdf
 ```
 
-## Deployment
+## Static Site
 
-This is a no-build static site.
+The front end is intentionally lightweight:
+
+- Plain HTML
+- Plain CSS
+- Small optional JavaScript enhancement
+- No React
+- No Tailwind
+- No external runtime dependencies
+- Works without JavaScript
 
 ### Local Preview
 
-Open `site/index.html` in your browser.
+Open `index.html` directly in a browser.
 
 ### Vercel
 
-1. Create a new Vercel project.
-2. Upload or connect the repository containing the `site` folder.
-3. Set the project root or output directory to `site` if needed.
-4. No build command is required.
-5. Deploy.
+The repository can deploy as a static Vercel project with no build step.
 
-## Link Placeholders
+Production URL:
 
-The page uses the requested placeholder URLs exactly as provided:
+https://funding-product-matrix.vercel.app/
+
+### GitHub Pages
+
+The same static site is also available through GitHub Pages:
+
+https://jfeimster.github.io/funding-product-matrix/
+
+## DistilledFunding Redirect Targets
+
+The static page is designed to work with branded DistilledFunding redirect URLs such as:
 
 - `https://www.distilledfunding.com/go/funding-matrix-pdf`
 - `https://www.distilledfunding.com/go/funding-matrix-csv`
@@ -54,11 +136,14 @@ The page uses the requested placeholder URLs exactly as provided:
 - `https://www.distilledfunding.com/go/funding-options`
 - `https://www.distilledfunding.com/go/broker-automation`
 
-## Notes
+## Compliance Note
 
-- No React.
-- No Tailwind.
-- No external dependencies.
-- JavaScript is optional enhancement only.
-- The page works without JavaScript.
-- Uses semantic HTML, accessible links, focus states, and responsive CSS.
+This project is an educational and broker workflow resource. It does **not** guarantee funding approval, pricing, repayment terms, lender eligibility, credit outcomes, or funding timelines. Eligibility and terms vary by lender/provider and borrower profile.
+
+Funding, underwriting, lending, tax, legal, accounting, and compliance decisions should remain with qualified professionals and the appropriate providers.
+
+---
+
+**Moonshine Capital / DistilledFunding**
+
+**Route better deals. Stop funding by vibes.**
