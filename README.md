@@ -17,7 +17,7 @@ A practical broker-routing resource from **Moonshine Capital / DistilledFunding*
 - **Full article:** https://www.distilledfunding.com/post/funding-product-matrix
 - **YouTube walkthrough:** https://youtu.be/d3llRn13oQ4
 - **Interactive Notion version:** https://feimster.notion.site/funding-product-matrix
-- **Google Docs lead magnet:** https://docs.google.com/document/d/12IrowK1pe0yTv827rfu8pOAWywyHs768aPeky-olY54/edit
+- **Google Docs lead magnet:** https://docs.google.com/document/d/1bBvlhatB9RevTQ5OSc5iqoBUldJhl8ZBgYAkPntXCfg/copy
 
 ## Downloadable Assets
 
@@ -88,12 +88,17 @@ funding-product-matrix/
 ├── styles.css
 ├── script.js
 ├── vercel.json
+├── .env.example
+├── api/
+│   ├── resource-lead.js
+│   └── health.js
 ├── README.md
 └── docs/
     ├── funding-product-matrix-for-brokers.md
     ├── funding-product-matrix-for-brokers.csv
     ├── funding-product-matrix-for-brokers.xlsx
-    └── funding-product-matrix-for-brokers-one-page.pdf
+    ├── funding-product-matrix-for-brokers-one-page.pdf
+    └── lead-capture-setup.md
 ```
 
 ## Static Site
@@ -160,7 +165,20 @@ The same static site is also available through GitHub Pages:
 
 https://jfeimster.github.io/funding-product-matrix/
 
-## Lead Capture\n\nThe landing page posts email access requests to `/api/resource-lead`, which can upsert HubSpot contacts using the server-only `HUBSPOT_PRIVATE_APP_TOKEN` environment variable. Resource links unlock only after a successful API response.\n\nSetup details: [docs/lead-capture-setup.md](docs/lead-capture-setup.md)\n\nThe YouTube and article cards use their direct published URLs:\n\n- YouTube: https://youtu.be/d3llRn13oQ4\n- Article: https://www.distilledfunding.com/post/funding-product-matrix\n\n## DistilledFunding Redirect Targets
+## Lead Capture
+
+The landing page posts resource-access events to `/api/resource-lead`. Each event receives a unique Event ID and is emitted to Vercel runtime logs. An hourly automation deduplicates and appends those events to the canonical Google Sheet:
+
+https://docs.google.com/spreadsheets/d/1a_adQz2LHCA-iUrcTQhH9uCCHbHBkBFA_ryuKUhh_Tw/edit
+
+Setup details: [docs/lead-capture-setup.md](docs/lead-capture-setup.md)
+
+The YouTube and article cards use their direct published URLs:
+
+- YouTube: https://youtu.be/d3llRn13oQ4
+- Article: https://www.distilledfunding.com/post/funding-product-matrix
+
+## DistilledFunding Redirect Targets
 
 The static page is designed to work with branded DistilledFunding redirect URLs such as:
 
