@@ -10,6 +10,32 @@
   const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
   const storageKey = "fundingMatrixResourceAccess";
 
+  const getAttribution = () => {
+    const params = new URLSearchParams(window.location.search);
+    return {
+      utm_source: params.get("utm_source") || "",
+      utm_medium: params.get("utm_medium") || "",
+      utm_campaign: params.get("utm_campaign") || "",
+      utm_content: params.get("utm_content") || "",
+      referrer: document.referrer || ""
+    };
+  };
+
+  const postResourceEvent = async (payload) => {
+    const response = await fetch("/api/resource-lead", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(payload)
+    });
+
+    const data = await response.json().catch(() => ({}));
+    if (!response.ok || data.ok === false) {
+      const message = data?.error?.message || "We could not save your resource access. Please try again.";
+      throw new Error(message);
+    }
+    return data;
+  };
+
   faqButtons.forEach((button) => {
     button.addEventListener("click", () => {
       const answer = document.getElementById(button.getAttribute("aria-controls"));
@@ -28,10 +54,16 @@
       link.removeAttribute("tabindex");
     });
     if (emailInput && email) emailInput.value = email;
-    if (formStatus) formStatus.textContent = "✓ Resources unlocked. Choose any format below.";
+    if (formStatus) {
+      formStatus.classList.remove("error");
+      formStatus.textContent = "✓ Resources unlocked. Choose any format below.";
+    }
     if (resourceNote) resourceNote.textContent = "Access unlocked on this browser. Choose any format — no additional form required.";
     const button = resourceForm?.querySelector(".unlock-button");
-    if (button) button.innerHTML = 'Resources Unlocked <span aria-hidden="true">✓</span>';
+    if (button) {
+      button.disabled = false;
+      button.innerHTML = 'Resources Unlocked <span aria-hidden="true">✓</span>';
+    }
   };
 
   const stored = (() => {
@@ -51,17 +83,29 @@
         }
         return;
       }
+
       try {
         const access = JSON.parse(localStorage.getItem(storageKey) || "{}");
         const opened = Array.isArray(access.opened) ? access.opened : [];
         const resource = link.dataset.resource;
         if (resource && !opened.includes(resource)) opened.push(resource);
-        localStorage.setItem(storageKey, JSON.stringify({ ...access, opened }));
+        const next = { ...access, opened };
+        localStorage.setItem(storageKey, JSON.stringify(next));
+
+        if (access.email && resource) {
+          postResourceEvent({
+            event: "resource_opened",
+            email: access.email,
+            resource,
+            source: "funding-product-matrix",
+            attribution: access.attribution || getAttribution()
+          }).catch(() => {});
+        }
       } catch {}
     });
   });
 
-  resourceForm?.addEventListener("submit", (event) => {
+  resourceForm?.addEventListener("submit", async (event) => {
     event.preventDefault();
     formStatus?.classList.remove("error");
     const email = emailInput?.value.trim() || "";
@@ -74,31 +118,39 @@
       return;
     }
 
-    const params = new URLSearchParams(window.location.search);
-    const access = {
-      email,
-      source: "funding-product-matrix",
-      capturedAt: new Date().toISOString(),
-      attribution: {
-        utm_source: params.get("utm_source") || "",
-        utm_medium: params.get("utm_medium") || "",
-        utm_campaign: params.get("utm_campaign") || "",
-        utm_content: params.get("utm_content") || "",
-        referrer: document.referrer || ""
-      },
-      opened: []
-    };
+    const attribution = getAttribution();
+    const button = resourceForm.querySelector(".unlock-button");
+    button.disabled = true;
+    button.innerHTML = 'Unlocking… <span aria-hidden="true">→</span>';
+    if (formStatus) formStatus.textContent = "Saving your access…";
 
-    try { localStorage.setItem(storageKey, JSON.stringify(access)); } catch {}
-    setUnlocked(email);
+    try {
+      await postResourceEvent({
+        event: "unlock",
+        email,
+        resource: "funding-product-matrix",
+        source: "funding-product-matrix",
+        attribution
+      });
 
-    /*
-      CRM HANDOFF:
-      The unlock works now without exposing credentials in the browser.
-      When a secure lead endpoint is available, POST the access object above
-      from this handler to that server-side endpoint (for example /api/resource-lead).
-      Do not place HubSpot, Notion, or other private API tokens in this file.
-    */
+      const access = {
+        email,
+        source: "funding-product-matrix",
+        capturedAt: new Date().toISOString(),
+        attribution,
+        opened: []
+      };
+
+      try { localStorage.setItem(storageKey, JSON.stringify(access)); } catch {}
+      setUnlocked(email);
+    } catch (error) {
+      button.disabled = false;
+      button.innerHTML = 'Unlock Resources <span aria-hidden="true">→</span>';
+      if (formStatus) {
+        formStatus.textContent = error.message || "We could not save your resource access. Please try again.";
+        formStatus.classList.add("error");
+      }
+    }
   });
 
   if (stickyCta) {
