@@ -1,52 +1,44 @@
 # Lead Capture Setup
 
-The Funding Product Matrix landing page uses a first-party Vercel serverless endpoint:
+The Funding Product Matrix landing page uses:
 
 `POST /api/resource-lead`
 
-The browser never receives HubSpot credentials.
+## Flow
 
-## Current behavior
+1. Visitor enters an email address in the landing-page resource card.
+2. The browser posts email + resource + UTM/referrer data to `/api/resource-lead`.
+3. The endpoint creates a unique Event ID and emits a structured `FPM_LEAD_EVENT` runtime event.
+4. The resource library unlocks immediately after a successful response.
+5. An hourly automation reads new Vercel events, deduplicates by Event ID, and appends them to the canonical Google Sheet.
 
-1. Visitor enters an email address.
-2. The page submits the email and UTM/referrer context to `/api/resource-lead`.
-3. The endpoint searches HubSpot contacts by email.
-4. If the contact exists, it is reused.
-5. If the contact does not exist, a new HubSpot contact is created.
-6. The resource library unlocks only after the server returns success.
-7. Resource clicks are sent back as lightweight `resource_opened` events. They can be written into a HubSpot contact property when an optional property mapping is configured.
+## Canonical Lead Ledger
 
-No marketing-subscription status is changed by this endpoint.
+**Funding Product Matrix Leads**
 
-## Required Vercel environment variable
+https://docs.google.com/spreadsheets/d/1a_adQz2LHCA-iUrcTQhH9uCCHbHBkBFA_ryuKUhh_Tw/edit
 
-Create a HubSpot private app with the minimum contact read/write scopes required by your portal, then add:
+Columns:
 
-`HUBSPOT_PRIVATE_APP_TOKEN`
+- Timestamp
+- Event ID
+- Email
+- Resource
+- Event
+- UTM Source
+- UTM Medium
+- UTM Campaign
+- UTM Content
+- Referrer
+- Follow-Up Status
+- Notes
 
-to the Vercel project environment.
+## Sync
 
-Do not put the token in `script.js`, `index.html`, GitHub Actions variables exposed to the client, or any `NEXT_PUBLIC_*` / `VITE_*` variable.
+The automation scans the prior two hours of production Vercel logs each hour and appends only Event IDs that are not already present in the Leads tab.
 
-## Optional attribution fields
-
-The endpoint can write source metadata into existing HubSpot CONTACT properties if you provide their internal property names:
-
-- `HUBSPOT_RESOURCE_PROPERTY`
-- `HUBSPOT_UTM_SOURCE_PROPERTY`
-- `HUBSPOT_UTM_MEDIUM_PROPERTY`
-- `HUBSPOT_UTM_CAMPAIGN_PROPERTY`
-- `HUBSPOT_UTM_CONTENT_PROPERTY`
-- `HUBSPOT_REFERRER_PROPERTY`
-
-If these are blank, the endpoint only creates or finds the contact by email.
-
-## Health check
+## Health Check
 
 `GET /api/health`
 
-returns whether the server sees the HubSpot token without revealing it.
-
-## Deployment control
-
-The repository's `vercel.json` controls Git-triggered deployments separately from the API implementation. Do not put secrets in `vercel.json`.
+returns the current lead-capture mode.
