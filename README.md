@@ -1,4 +1,4 @@
-<img width="1200" height="798" alt="Image" src="https://github.com/user-attachments/assets/ad126fd5-9b80-413d-b8b7-92d91809fe96" />
+<img width="1672" height="941" alt="Image" src="https://github.com/user-attachments/assets/d6cd8df3-6d4c-4b91-a437-d654814aec9f" />
 
 # Funding Product Matrix for Brokers
 
