@@ -1,21 +1,47 @@
-document.documentElement.classList.add("js");
+(() => {
+  const faqButtons = document.querySelectorAll(".faq-question");
+  const stickyCta = document.getElementById("sticky-cta");
+  const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
 
-const revealItems = document.querySelectorAll(".reveal");
+  faqButtons.forEach((button) => {
+    button.addEventListener("click", () => {
+      const answerId = button.getAttribute("aria-controls");
+      const answer = document.getElementById(answerId);
+      const isOpen = button.getAttribute("aria-expanded") === "true";
 
-if ("IntersectionObserver" in window && revealItems.length > 0) {
-  const observer = new IntersectionObserver(
-    (entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add("is-visible");
-          observer.unobserve(entry.target);
-        }
+      button.setAttribute("aria-expanded", String(!isOpen));
+      answer.hidden = isOpen;
+    });
+  });
+
+  if (!stickyCta) return;
+
+  const updateStickyCta = () => {
+    const shouldShow = window.scrollY > 500;
+    stickyCta.classList.toggle("visible", shouldShow);
+    document.body.classList.toggle("has-sticky-cta", shouldShow);
+  };
+
+  let ticking = false;
+
+  window.addEventListener(
+    "scroll",
+    () => {
+      if (ticking) return;
+
+      window.requestAnimationFrame(() => {
+        updateStickyCta();
+        ticking = false;
       });
+
+      ticking = true;
     },
-    { threshold: 0.12 }
+    { passive: true }
   );
 
-  revealItems.forEach((item) => observer.observe(item));
-} else {
-  revealItems.forEach((item) => item.classList.add("is-visible"));
-}
+  updateStickyCta();
+
+  if (reducedMotion.matches) {
+    document.documentElement.style.scrollBehavior = "auto";
+  }
+})();
