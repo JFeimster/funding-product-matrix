@@ -187,9 +187,9 @@ The static page is designed to work with branded DistilledFunding redirect URLs 
 - `https://www.distilledfunding.com/go/funding-matrix-notion`
 - `https://www.distilledfunding.com/go/funding-matrix-video`
 - `https://www.distilledfunding.com/go/funding-matrix-article`
-- `https://www.distilledfunding.com/go/start-funding-agency`
-- `https://www.distilledfunding.com/go/funding-options`
-- `https://www.distilledfunding.com/go/broker-automation`
+- `https://tally.so/r/mOe658`
+- `https://www.distilledfunding.com/get-funded`
+- `https://www.distilledfunding.com/post/ai-tools-for-loan-brokers`
 
 ## Compliance Note
 
