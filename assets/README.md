@@ -1,14 +1,14 @@
 # Visual Assets
 
-Canonical visual asset directory for the Funding Product Matrix project.
+Actual image binaries for the Funding Product Matrix project are tracked here.
 
-## Structure
-
-- `avatars/` — square profile and repository avatar graphics
-- `thumbnails/` — YouTube, site, and promotional thumbnails
-- `icons/` — favicons, app icons, and UI icon assets
-- `social/` — platform-specific social graphics
+- `avatars/` — project avatar artwork (`avatar-v1.png`)
+- `thumbnails/` — seven promotional, YouTube, and social preview PNG images
+- `icons/` — icon assets and placeholders
+- `social/` — platform-specific graphics
 - `screenshots/` — product/site screenshots
-- `brand/` — project-specific visual guidance and reusable brand elements
+- `brand/` — project brand guidance
 
-Downloadable lead-magnet files such as PDF, CSV, XLSX, and Markdown remain in `/docs`.
+Use paths relative to the site root, e.g. `/assets/avatars/avatar-v1.png`.
+
+Downloadable PDF, CSV, XLSX and Markdown lead magnets remain in `/docs`.

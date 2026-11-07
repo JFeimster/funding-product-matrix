@@ -1,5 +1,5 @@
 # Avatars
 
-Square profile and repository avatar assets belong here.
+- [`avatar-v1.png`](avatar-v1.png) — source project avatar, preserved from the project's Google Drive asset folder.
 
-Recommended canonical file: `funding-product-matrix-avatar-200x200.png`
+Reference from the root as `/assets/avatars/avatar-v1.png`.
